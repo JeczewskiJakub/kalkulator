@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+
 class Calculator extends StatelessWidget {
   const Calculator({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class Calculator extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('0result',style: TextStyle(fontSize: 75,color: Colors.white,fontWeight: FontWeight.w500,),),
+                Text(text,style: TextStyle(fontSize: 75,color: Colors.white,fontWeight: FontWeight.w500,),),
                 Padding(padding: EdgeInsets.all(2)),
                 Text('five',style: TextStyle(fontSize: 75,color: Colors.orange,fontWeight: FontWeight.w400),),
                 Padding(padding: EdgeInsets.all(2)),
@@ -124,8 +125,13 @@ class Numbers extends StatelessWidget {
 
     if (nText == 'C') {
       text = '0';
+      numOne = 0;
+      numTwo = 0;
       result = '';
       finalResult = '0';
+      operator = '';
+      preoperator = '';
+
     }
     else if (operator == '=' && nText == '=') {
       if (preoperator == '+') {
@@ -162,7 +168,12 @@ class Numbers extends StatelessWidget {
     else {
       result = result + nText;
     }
-  }
+
+    setState(() {
+    text = finalResult;
+    });
+}
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(onPressed: ()=> functions(text),
